@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import BookEdit from "./BookEdit";
 
-const BookShow = ({ book, handleDelete, handleEdit }) => {
+const BookShow = ({ book, deleteBook, editBook }) => {
   const [edit, setEdit] = useState(false);
 
-  const bookDelete = () => {
-    handleDelete(book.id);
+  const handleDelete = () => {
+    deleteBook(book.id);
   };
 
-  let content = <h2>{book.name}</h2>;
-
-  if (edit) {
-    content = <BookEdit handleEdit={handleEdit} book={book} />;
-  }
-
   return (
-    <span>
-      <div>{content}</div>
-      <button onClick={bookDelete}>Delete</button>
-      <button onClick={() => setEdit(!edit)}>Edit</button>
-    </span>
+    <div>
+      {edit ? (
+        <BookEdit book={book} editBook={editBook} />
+      ) : (
+        <h2>{book.title}</h2>
+      )}
+      <button onClick={handleDelete}>DELETE</button>
+      <button onClick={() => setEdit(!edit)}>EDIT</button>
+    </div>
   );
 };
 

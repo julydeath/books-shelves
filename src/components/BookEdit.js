@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 
-const BookEdit = ({ handleEdit, book }) => {
-  const [newtitle, setNewTitle] = useState(book.name);
+const BookEdit = ({ book, editBook }) => {
+  const [newtitle, setNewTitle] = useState(book.title);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleEdit(book.id, newtitle);
+    editBook(book.id, newtitle);
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" onChange={(e) => setNewTitle(e.target.value)} />
-        <button>SAVE</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        value={newtitle}
+        type="text"
+        placeholder="New title ..."
+        onChange={(e) => setNewTitle(e.target.value)}
+      />
+      <button>SAVE</button>
+    </form>
   );
 };
 
