@@ -17,10 +17,24 @@ function App() {
     setBooks(filterBooks);
   };
 
+  const handleEdit = (id, newTitle) => {
+    const updatedBooks = books.map((book) => {
+      if (book.id === id) {
+        return { ...books, name: newTitle };
+      }
+      return book;
+    });
+    setBooks(updatedBooks);
+  };
+
   return (
     <div>
       <BookCreate onSubmit={createBooks} />
-      <BookList books={books} handleDelete={handleDelete} />
+      <BookList
+        books={books}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+      />
     </div>
   );
 }
